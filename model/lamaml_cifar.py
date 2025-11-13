@@ -125,7 +125,7 @@ class Net(BaseNet):
                     self.push_to_mem(batch_x, batch_y, torch.tensor(t))
                 meta_loss, logits = self.meta_loss(bx, fast_weights, by, bt, t)
 
-                meta_losses[i] += meta_loss
+                meta_losses[i] += self.args.etas[i] * meta_loss
 
             # Taking the meta gradient step (will update the learning rates)
             self.zero_grads()
